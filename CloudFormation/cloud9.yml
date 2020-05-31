@@ -8,35 +8,6 @@ Parameters:
 
 
 Resources:
-  Cloud9SecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties: 
-      # A description for the security group
-      # String
-      GroupDescription: Allow ssh to/from our Cloud9 host
-      SecurityGroupEgress: 
-      - IpProtocol: tcp
-        FromPort: 0
-        ToPort: 65535
-        CidrIp: 0.0.0.0/0
-      SecurityGroupIngress: 
-      - IpProtocol: tcp
-        FromPort: 22
-        ToPort: 22
-        CidrIp: 34.217.141.224/27 # Change this to my IP Address
-      - IpProtocol: tcp
-        FromPort: 22
-        ToPort: 22
-        CidrIp: 34.218.119.32/27 # Change this to my IP Address
-      # Any tags assigned to the security group
-      #Tags: 
-      #  - Tag
-      # The ID of the VPC for the security group
-      # String
-      VpcId: 
-        Fn::ImportValue:
-          !Sub "${EnvironmentName}-VPCID"
-
   Cloud9Environment:
     Type: 'AWS::Cloud9::EnvironmentEC2'
     Properties:
@@ -45,3 +16,16 @@ Resources:
       Name: !Sub '${Name}'
       SubnetId:
         Fn::ImportValue: !Sub '${EnvironmentName}-PUB1-SN'
+      # Repositories:
+      #     - RepositoryUrl: !Sub 'https://git-codecommit.${AWS::Region}.amazonaws.com/v1/repos/${RepositoryName}'
+      #       PathComponent: !Sub 'codecommit/${RepositoryName}'
+
+Outputs:
+
+  Cloud9URL:
+    Description: Cloud9 Environment
+    Value:
+      Fn::Join:
+      - ''
+      - - !Sub https://${AWS::Region}.console.aws.amazon.com/cloud9/ide/
+        - !Ref 'Cloud9Environment'
