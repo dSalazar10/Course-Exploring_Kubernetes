@@ -1,3 +1,8 @@
+Description:
+  AWS does NOT currently support an Ubuntu ami EnvironmentEC2 in CloudFormation
+  This is will not work as there is no IAM identity associated with it.
+  Best to log into a different account and manually setup Cloud9 w/ Ubuntu
+
 Parameters:
   EnvironmentName:
     Description: An environment name that will be prefixed to resource names
@@ -9,16 +14,24 @@ Parameters:
 
 Resources:
   Cloud9Environment:
-    Type: 'AWS::Cloud9::EnvironmentEC2'
+    Type: AWS::Cloud9::EnvironmentEC2
     Properties:
       AutomaticStopTimeMinutes: 30
       InstanceType: 't2.micro'
       Name: !Sub '${Name}'
       SubnetId:
-        Fn::ImportValue: !Sub '${EnvironmentName}-PUB1-SN'
+        Fn::ImportValue: alias python=python3
+          !Sub '${EnvironmentName}-PUB1-SN'
       # Repositories:
-      #     - RepositoryUrl: !Sub 'https://git-codecommit.${AWS::Region}.amazonaws.com/v1/repos/${RepositoryName}'
-      #       PathComponent: !Sub 'codecommit/${RepositoryName}'
+      #   - PathComponent: /cfn
+      #     RepositoryUrl: !GetAtt MyRepo.CloneUrlHttp
+
+  # MyRepo:
+  #   Type: "AWS::CodeCommit::Repository"
+  #   Properties:
+  #     RepositoryName: MyRepo
+  #     RepositoryDescription: Sample Repo for Cloud9 CFN Post
+
 
 Outputs:
 
