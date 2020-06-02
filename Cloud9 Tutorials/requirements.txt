@@ -9,3 +9,5 @@ nbval
 click
 flask
 requests
+hadolint
+circleci
