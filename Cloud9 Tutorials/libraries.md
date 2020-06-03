@@ -1,4 +1,0 @@
-ipython
-wikipedia
-requests
-boto3
