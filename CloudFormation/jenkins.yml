@@ -418,3 +418,8 @@ Outputs:
   BucketName:
     Value: !Ref 'S3Bucket'
     Description: Name of the Amazon S3 bucket hosting the static website
+  LoadBalancerDNS:
+    Description: The URL of the LoadBalancer
+    Value: !GetAtt [JenkinsLB, DNSName]
+    Export:
+      Name: !Sub ${EnvironmentName}-LB-DNS

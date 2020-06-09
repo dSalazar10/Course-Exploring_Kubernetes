@@ -51,3 +51,10 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           !Sub "${EnvironmentName}-VPCID"
+
+Outputs:
+  BastionIP:
+    Description: The Public IP Address of the basion host
+    Value:  !GetAtt [BastionHost, PublicIp]
+    Export:
+      Name: !Sub ${EnvironmentName}-B-IP
