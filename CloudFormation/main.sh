@@ -71,22 +71,27 @@ function SetupStack {
     echo "~~~~~~~~~~~~~"
     echo ""
     echo "Select from the following options:"
-    echo "1) Network Server"
-    echo "2) Cloud9 Server"
+    echo "1) Jenkins Server"
+    echo "2) Bastion Server"
+    echo "3) Network Server"
     echo "~:"
     read choice
     case $choice in
         1)
+            stackname="JenkinsServer"
+            tempfile="jenkins.yml"
+            paramfile="jenkins-parameters.json"
+            ;;
+        2) 
+            stackname="BastionServer"
+            tempfile="bastion.yml"
+            paramfile="bastion-parameters.json"
+            ;;
+        3)
             stackname="NetworkServer"
             tempfile="network.yml"
             paramfile="network-parameters.json"
             ;;
-        2) 
-            stackname="Cloud9Server"
-            tempfile="cloud9.yml"
-            paramfile="cloud9-parameters.json"
-            ;;
-            
     esac
 }
 function CloudFormationModifications {

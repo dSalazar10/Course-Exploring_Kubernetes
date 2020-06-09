@@ -1,7 +1,7 @@
 [
   {
   "ParameterKey": "EnvironmentName",
-  "ParameterValue": "Cloud9Env"
+  "ParameterValue": "JenkinsEnv"
   },
   {
   "ParameterKey": "VpcCIDR",
