@@ -4,7 +4,7 @@
 
 # Step 1:
 # This is your Docker ID/path
-dockerpath = "dsalazar10/udacity"
+dockerpath = "dsalazar10/cluster"
 
 # Step 2
 # Run the Docker Hub container with kubernetes

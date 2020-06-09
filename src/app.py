@@ -1,9 +1,12 @@
 #!/usr/bin/env python
-import click
+from flask import Flask, escape, request
 
-@click.command()
+app = Flask(__name__)
+
+@app.route('/')
 def hello():
-    click.echo('Hello World!')
-    
+    name = request.args.get("name", "World")
+    return "Hello, {}!".format(escape(name))
+
 if __name__ == '__main__':
-    hello()
+    app.run(debug=True, port=5000, host='0.0.0.0')

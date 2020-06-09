@@ -4,4 +4,4 @@
 DOCKERPATH="dsalazar10/cluster"
 
 # Run service
-docker run -it -p 80:80 --rm $DOCKERPATH
+docker run -it -p 5000:5000 --rm $DOCKERPATH

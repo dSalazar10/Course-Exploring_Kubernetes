@@ -71,26 +71,26 @@ function SetupStack {
     echo "~~~~~~~~~~~~~"
     echo ""
     echo "Select from the following options:"
-    echo "1) Jenkins Server"
-    echo "2) Bastion Server"
-    echo "3) Network Server"
+    echo "1) Network Stack"
+    echo "2) Bastion Stack"
+    echo "3) Jenkins Stack"
     echo "~:"
     read choice
     case $choice in
         1)
-            stackname="JenkinsServer"
-            tempfile="jenkins.yml"
-            paramfile="jenkins-parameters.json"
+            stackname="NetworkStack"
+            tempfile="network.yml"
+            paramfile="network-parameters.json"
             ;;
-        2) 
-            stackname="BastionServer"
+        2)
+            stackname="BastionStack"
             tempfile="bastion.yml"
             paramfile="bastion-parameters.json"
             ;;
         3)
-            stackname="NetworkServer"
-            tempfile="network.yml"
-            paramfile="network-parameters.json"
+            stackname="JenkinsStack"
+            tempfile="jenkins.yml"
+            paramfile="jenkins-parameters.json"
             ;;
     esac
 }
